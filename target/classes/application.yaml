@@ -1,0 +1,10 @@
+spring:
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/xinxin?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useJDBCCompliantTimezoneShift=true&nullCatalogMeansCurrent=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#server:
+#  port: 9596
