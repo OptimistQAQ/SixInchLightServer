@@ -6,5 +6,17 @@ spring:
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-#server:
-#  port: 9596
+server:
+  port: 9596
+
+# mybatis配置
+mybatis:
+  # 配置映射类所在包名
+  type-aliases-package: com.example.optimist
+  # 配置mapper xml文件所在路径，这里是一个数组
+  mapper-locations:
+    - mapper/UserMapper.xml
+    - mapper/AdminMapper.xml
+    - mapper/AttentionMapper.xml
+    - mapper/FlowerinformationMapper.xml
+    - mapper/FlowerMapper.xml

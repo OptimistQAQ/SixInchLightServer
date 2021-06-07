@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.optimist.mapper.FlowerinformationMapper" >
+  <resultMap id="BaseResultMap" type="com.example.optimist.entity.Flowerinformation" >
+    <id column="Ino" property="ino" jdbcType="INTEGER" />
+    <result column="Iname" property="iname" jdbcType="VARCHAR" />
+    <result column="Imessage" property="imessage" jdbcType="VARCHAR" />
+    <result column="Iphoto" property="iphoto" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Ino, Iname, Imessage, Iphoto
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from flowerinformation
+    where Ino = #{ino,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from flowerinformation
+    where Ino = #{ino,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.optimist.entity.Flowerinformation" >
+    insert into flowerinformation (Ino, Iname, Imessage, 
+      Iphoto)
+    values (#{ino,jdbcType=INTEGER}, #{iname,jdbcType=VARCHAR}, #{imessage,jdbcType=VARCHAR}, 
+      #{iphoto,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.optimist.entity.Flowerinformation" >
+    insert into flowerinformation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ino != null" >
+        Ino,
+      </if>
+      <if test="iname != null" >
+        Iname,
+      </if>
+      <if test="imessage != null" >
+        Imessage,
+      </if>
+      <if test="iphoto != null" >
+        Iphoto,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ino != null" >
+        #{ino,jdbcType=INTEGER},
+      </if>
+      <if test="iname != null" >
+        #{iname,jdbcType=VARCHAR},
+      </if>
+      <if test="imessage != null" >
+        #{imessage,jdbcType=VARCHAR},
+      </if>
+      <if test="iphoto != null" >
+        #{iphoto,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.optimist.entity.Flowerinformation" >
+    update flowerinformation
+    <set >
+      <if test="iname != null" >
+        Iname = #{iname,jdbcType=VARCHAR},
+      </if>
+      <if test="imessage != null" >
+        Imessage = #{imessage,jdbcType=VARCHAR},
+      </if>
+      <if test="iphoto != null" >
+        Iphoto = #{iphoto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Ino = #{ino,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.optimist.entity.Flowerinformation" >
+    update flowerinformation
+    set Iname = #{iname,jdbcType=VARCHAR},
+      Imessage = #{imessage,jdbcType=VARCHAR},
+      Iphoto = #{iphoto,jdbcType=VARCHAR}
+    where Ino = #{ino,jdbcType=INTEGER}
+  </update>
+</mapper>

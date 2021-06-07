@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!--mysql 连接数据库jar 这里选择自己本地位置-->
 
@@ -48,7 +51,7 @@
 
         <!-- 指定数据库表 -->
         <table schema="xinxin" tableName="User" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
         <table schema="xinxin" tableName="Admin" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
         <table schema="xinxin" tableName="Flower" enableCountByExample="false" enableUpdateByExample="false"

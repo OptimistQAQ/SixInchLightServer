@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.optimist.mapper.FlowerMapper" >
+  <resultMap id="BaseResultMap" type="com.example.optimist.entity.Flower" >
+    <id column="Fno" property="fno" jdbcType="INTEGER" />
+    <result column="Fname" property="fname" jdbcType="VARCHAR" />
+    <result column="Fintroduce" property="fintroduce" jdbcType="VARCHAR" />
+    <result column="Fvalue" property="fvalue" jdbcType="VARCHAR" />
+    <result column="Fpart" property="fpart" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Fno, Fname, Fintroduce, Fvalue, Fpart
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from flower
+    where Fno = #{fno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from flower
+    where Fno = #{fno,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.optimist.entity.Flower" >
+    insert into flower (Fno, Fname, Fintroduce, 
+      Fvalue, Fpart)
+    values (#{fno,jdbcType=INTEGER}, #{fname,jdbcType=VARCHAR}, #{fintroduce,jdbcType=VARCHAR}, 
+      #{fvalue,jdbcType=VARCHAR}, #{fpart,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.optimist.entity.Flower" >
+    insert into flower
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fno != null" >
+        Fno,
+      </if>
+      <if test="fname != null" >
+        Fname,
+      </if>
+      <if test="fintroduce != null" >
+        Fintroduce,
+      </if>
+      <if test="fvalue != null" >
+        Fvalue,
+      </if>
+      <if test="fpart != null" >
+        Fpart,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fno != null" >
+        #{fno,jdbcType=INTEGER},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fintroduce != null" >
+        #{fintroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="fvalue != null" >
+        #{fvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="fpart != null" >
+        #{fpart,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.optimist.entity.Flower" >
+    update flower
+    <set >
+      <if test="fname != null" >
+        Fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fintroduce != null" >
+        Fintroduce = #{fintroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="fvalue != null" >
+        Fvalue = #{fvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="fpart != null" >
+        Fpart = #{fpart,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Fno = #{fno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.optimist.entity.Flower" >
+    update flower
+    set Fname = #{fname,jdbcType=VARCHAR},
+      Fintroduce = #{fintroduce,jdbcType=VARCHAR},
+      Fvalue = #{fvalue,jdbcType=VARCHAR},
+      Fpart = #{fpart,jdbcType=VARCHAR}
+    where Fno = #{fno,jdbcType=INTEGER}
+  </update>
+</mapper>

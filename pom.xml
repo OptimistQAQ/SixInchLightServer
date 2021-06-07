@@ -90,7 +90,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>net.ishero.road.RoadApplication</mainClass>
+                            <mainClass>com.example.optimist.SixInchApplication</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

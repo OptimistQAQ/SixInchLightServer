@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.optimist.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.example.optimist.entity.User" >
+    <id column="Uno" property="uno" jdbcType="INTEGER" />
+    <result column="Uname" property="uname" jdbcType="VARCHAR" />
+    <result column="Unick_name" property="unickName" jdbcType="VARCHAR" />
+    <result column="Upassword" property="upassword" jdbcType="VARCHAR" />
+    <result column="Uprofile_photo" property="uprofilePhoto" jdbcType="VARCHAR" />
+    <result column="Utotal_time" property="utotalTime" jdbcType="INTEGER" />
+    <result column="Utotal_distance" property="utotalDistance" jdbcType="INTEGER" />
+    <result column="Utotal_line" property="utotalLine" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Uno, Uname, Unick_name, Upassword, Uprofile_photo, Utotal_time, Utotal_distance, 
+    Utotal_line
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where Uno = #{uno,jdbcType=INTEGER}
+  </select>
+  <select id="returnAll" resultMap="BaseResultMap">
+    select*
+    from User
+  </select>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from User
+    where Uname = #{uname, jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where Uno = #{uno,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.optimist.entity.User" >
+    insert into user (Uno, Uname, Unick_name, 
+      Upassword, Uprofile_photo, Utotal_time, 
+      Utotal_distance, Utotal_line)
+    values (#{uno,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{unickName,jdbcType=VARCHAR}, 
+      #{upassword,jdbcType=VARCHAR}, #{uprofilePhoto,jdbcType=VARCHAR}, #{utotalTime,jdbcType=INTEGER}, 
+      #{utotalDistance,jdbcType=INTEGER}, #{utotalLine,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.optimist.entity.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uno != null" >
+        Uno,
+      </if>
+      <if test="uname != null" >
+        Uname,
+      </if>
+      <if test="unickName != null" >
+        Unick_name,
+      </if>
+      <if test="upassword != null" >
+        Upassword,
+      </if>
+      <if test="uprofilePhoto != null" >
+        Uprofile_photo,
+      </if>
+      <if test="utotalTime != null" >
+        Utotal_time,
+      </if>
+      <if test="utotalDistance != null" >
+        Utotal_distance,
+      </if>
+      <if test="utotalLine != null" >
+        Utotal_line,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uno != null" >
+        #{uno,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="unickName != null" >
+        #{unickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upassword != null" >
+        #{upassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uprofilePhoto != null" >
+        #{uprofilePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="utotalTime != null" >
+        #{utotalTime,jdbcType=INTEGER},
+      </if>
+      <if test="utotalDistance != null" >
+        #{utotalDistance,jdbcType=INTEGER},
+      </if>
+      <if test="utotalLine != null" >
+        #{utotalLine,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.optimist.entity.User" >
+    update user
+    <set >
+      <if test="uname != null" >
+        Uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="unickName != null" >
+        Unick_name = #{unickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upassword != null" >
+        Upassword = #{upassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uprofilePhoto != null" >
+        Uprofile_photo = #{uprofilePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="utotalTime != null" >
+        Utotal_time = #{utotalTime,jdbcType=INTEGER},
+      </if>
+      <if test="utotalDistance != null" >
+        Utotal_distance = #{utotalDistance,jdbcType=INTEGER},
+      </if>
+      <if test="utotalLine != null" >
+        Utotal_line = #{utotalLine,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Uno = #{uno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.optimist.entity.User" >
+    update user
+    set Uname = #{uname,jdbcType=VARCHAR},
+      Unick_name = #{unickName,jdbcType=VARCHAR},
+      Upassword = #{upassword,jdbcType=VARCHAR},
+      Uprofile_photo = #{uprofilePhoto,jdbcType=VARCHAR},
+      Utotal_time = #{utotalTime,jdbcType=INTEGER},
+      Utotal_distance = #{utotalDistance,jdbcType=INTEGER},
+      Utotal_line = #{utotalLine,jdbcType=INTEGER}
+    where Uno = #{uno,jdbcType=INTEGER}
+  </update>
+</mapper>

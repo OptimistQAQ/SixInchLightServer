@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.optimist.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.example.optimist.entity.Admin" >
+    <id column="Ano" property="ano" jdbcType="INTEGER" />
+    <result column="Utitle" property="utitle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Ano, Utitle
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where Ano = #{ano,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin
+    where Ano = #{ano,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.optimist.entity.Admin" >
+    insert into admin (Ano, Utitle)
+    values (#{ano,jdbcType=INTEGER}, #{utitle,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.optimist.entity.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ano != null" >
+        Ano,
+      </if>
+      <if test="utitle != null" >
+        Utitle,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ano != null" >
+        #{ano,jdbcType=INTEGER},
+      </if>
+      <if test="utitle != null" >
+        #{utitle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.optimist.entity.Admin" >
+    update admin
+    <set >
+      <if test="utitle != null" >
+        Utitle = #{utitle,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Ano = #{ano,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.optimist.entity.Admin" >
+    update admin
+    set Utitle = #{utitle,jdbcType=VARCHAR}
+    where Ano = #{ano,jdbcType=INTEGER}
+  </update>
+</mapper>
