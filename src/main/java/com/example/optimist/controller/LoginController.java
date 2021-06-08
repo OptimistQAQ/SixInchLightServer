@@ -45,6 +45,26 @@ public class LoginController implements Serializable {
         }
     }
 
+    @PostMapping("/register")
+    @ResponseBody
+    public String register(Registered form) {
+        User user = userMapper.selectByName(form.getName());
+        Map<String, String> status = new HashMap<>();
+        if (user != null) {
+            status.put("status", "error");
+            status.put("dsc", "user already exists");
+        } else {
+            User newUser = new User();
+            newUser.setUname(form.getName());
+            newUser.setUnickName(form.getName());
+            newUser.setUpassword(form.getPassword());
+            userMapper.insertSelective(newUser);
+            status.put("status", "success");
+            status.put("dsc", "user registration successful");
+        }
+        return JSON.toJSONString(status);
+    }
+
     @PostMapping("/showLogin")
     @ResponseBody
     public String showLogin(){
