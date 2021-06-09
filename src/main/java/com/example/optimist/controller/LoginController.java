@@ -2,6 +2,7 @@ package com.example.optimist.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.example.optimist.bean.Registered;
+import com.example.optimist.bean.UserUpdate;
 import com.example.optimist.entity.User;
 import com.example.optimist.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,23 @@ public class LoginController implements Serializable {
             userMapper.insertSelective(newUser);
             status.put("status", "success");
             status.put("dsc", "user registration successful");
+        }
+        return JSON.toJSONString(status);
+    }
+
+    @PostMapping("/updateInfo")
+    @ResponseBody
+    public String updateInfo(UserUpdate form) {
+        User user = userMapper.selectByPrimaryKey(form.getUno());
+        Map<String, String> status = new HashMap<>();
+        if (user.getUno().equals(form.getUno())) {
+            user.setUnickName(form.getNick_name());
+            user.setUpassword(form.getPassword());
+            userMapper.updateByPrimaryKeySelective(user);
+            status.put("form_name", form.getNick_name());
+            status.put("user_name", form.getNick_name());
+            status.put("status", "success");
+            status.put("dsc", "Reset successfully");
         }
         return JSON.toJSONString(status);
     }
