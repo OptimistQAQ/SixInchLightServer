@@ -3,7 +3,9 @@ package com.example.optimist.controller;
 import com.alibaba.fastjson.JSON;
 import com.example.optimist.bean.Registered;
 import com.example.optimist.bean.UserUpdate;
+import com.example.optimist.entity.Newsflower;
 import com.example.optimist.entity.User;
+import com.example.optimist.mapper.NewsflowerMapper;
 import com.example.optimist.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class LoginController implements Serializable {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private NewsflowerMapper newsflowerMapper;
 
     @PostMapping("/login")
     @ResponseBody
@@ -88,6 +93,13 @@ public class LoginController implements Serializable {
     public String showLogin(){
         List<User> users = userMapper.returnAll();
         return JSON.toJSONString(users);
+    }
+
+    @PostMapping("/showNews")
+    @ResponseBody
+    public String showNews() {
+        List<Newsflower> newsflowers = newsflowerMapper.returnAll();
+        return JSON.toJSONString(newsflowers);
     }
 
 }

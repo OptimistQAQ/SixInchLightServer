@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.optimist.mapper.NewsflowerMapper" >
+  <resultMap id="BaseResultMap" type="com.example.optimist.entity.Newsflower" >
+    <id column="Nno" property="nno" jdbcType="INTEGER" />
+    <result column="Ntitle" property="ntitle" jdbcType="VARCHAR" />
+    <result column="Nathor" property="nathor" jdbcType="VARCHAR" />
+    <result column="Ntime" property="ntime" jdbcType="VARCHAR" />
+    <result column="Nimg" property="nimg" jdbcType="VARCHAR" />
+    <result column="Ndetail" property="ndetail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Nno, Ntitle, Nathor, Ntime, Nimg, Ndetail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from newsflower
+    where Nno = #{nno,jdbcType=INTEGER}
+  </select>
+  <select id="returnAll" resultMap="BaseResultMap">
+    select*
+    from NewsFlower
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from newsflower
+    where Nno = #{nno,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.optimist.entity.Newsflower" >
+    insert into newsflower (Nno, Ntitle, Nathor, 
+      Ntime, Nimg, Ndetail
+      )
+    values (#{nno,jdbcType=INTEGER}, #{ntitle,jdbcType=VARCHAR}, #{nathor,jdbcType=VARCHAR}, 
+      #{ntime,jdbcType=VARCHAR}, #{nimg,jdbcType=VARCHAR}, #{ndetail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.optimist.entity.Newsflower" >
+    insert into newsflower
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nno != null" >
+        Nno,
+      </if>
+      <if test="ntitle != null" >
+        Ntitle,
+      </if>
+      <if test="nathor != null" >
+        Nathor,
+      </if>
+      <if test="ntime != null" >
+        Ntime,
+      </if>
+      <if test="nimg != null" >
+        Nimg,
+      </if>
+      <if test="ndetail != null" >
+        Ndetail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nno != null" >
+        #{nno,jdbcType=INTEGER},
+      </if>
+      <if test="ntitle != null" >
+        #{ntitle,jdbcType=VARCHAR},
+      </if>
+      <if test="nathor != null" >
+        #{nathor,jdbcType=VARCHAR},
+      </if>
+      <if test="ntime != null" >
+        #{ntime,jdbcType=VARCHAR},
+      </if>
+      <if test="nimg != null" >
+        #{nimg,jdbcType=VARCHAR},
+      </if>
+      <if test="ndetail != null" >
+        #{ndetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.optimist.entity.Newsflower" >
+    update newsflower
+    <set >
+      <if test="ntitle != null" >
+        Ntitle = #{ntitle,jdbcType=VARCHAR},
+      </if>
+      <if test="nathor != null" >
+        Nathor = #{nathor,jdbcType=VARCHAR},
+      </if>
+      <if test="ntime != null" >
+        Ntime = #{ntime,jdbcType=VARCHAR},
+      </if>
+      <if test="nimg != null" >
+        Nimg = #{nimg,jdbcType=VARCHAR},
+      </if>
+      <if test="ndetail != null" >
+        Ndetail = #{ndetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Nno = #{nno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.optimist.entity.Newsflower" >
+    update newsflower
+    set Ntitle = #{ntitle,jdbcType=VARCHAR},
+      Nathor = #{nathor,jdbcType=VARCHAR},
+      Ntime = #{ntime,jdbcType=VARCHAR},
+      Nimg = #{nimg,jdbcType=VARCHAR},
+      Ndetail = #{ndetail,jdbcType=VARCHAR}
+    where Nno = #{nno,jdbcType=INTEGER}
+  </update>
+</mapper>

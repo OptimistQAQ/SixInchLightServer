@@ -20,3 +20,4 @@ mybatis:
     - mapper/AttentionMapper.xml
     - mapper/FlowerinformationMapper.xml
     - mapper/FlowerMapper.xml
+    - mapper/NewsflowerMapper.xml

@@ -18,6 +18,15 @@ class User(Base):
     Utotal_distance = db.Column(db.Integer, server_default='10')  # 发表篇数
     Utotal_line = db.Column(db.Integer, server_default='10')  # 被赞篇数
 
+class NewsFlower(Base):
+    __tablename__ = "NewsFlower"
+    Nno = db.Column(db.Integer, autoincrement=True, primary_key=True, index=True)
+    Ntitle = db.Column(db.String(64), nullable=False, server_default="标题")
+    Nathor = db.Column(db.String(64), nullable=False, server_default="作者")
+    Ntime = db.Column(db.String(64), nullable=False)
+    Nimg = db.Column(db.String(128))
+    Ndetail = db.Column(db.String(1024))
+
 class Admin(Base):
     __tablename__ = "Admin"
     Ano = db.Column(db.Integer, db.ForeignKey('User.Uno'), primary_key=True)  # 管理员id
