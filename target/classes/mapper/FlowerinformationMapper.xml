@@ -16,6 +16,10 @@
     from flowerinformation
     where Ino = #{ino,jdbcType=INTEGER}
   </select>
+  <select id="returnAll" resultMap="BaseResultMap">
+    select*
+    from FlowerInformation
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from flowerinformation
     where Ino = #{ino,jdbcType=INTEGER}

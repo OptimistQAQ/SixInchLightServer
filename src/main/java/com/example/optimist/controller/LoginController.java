@@ -3,8 +3,12 @@ package com.example.optimist.controller;
 import com.alibaba.fastjson.JSON;
 import com.example.optimist.bean.Registered;
 import com.example.optimist.bean.UserUpdate;
+import com.example.optimist.entity.Flower;
+import com.example.optimist.entity.Flowerinformation;
 import com.example.optimist.entity.Newsflower;
 import com.example.optimist.entity.User;
+import com.example.optimist.mapper.FlowerMapper;
+import com.example.optimist.mapper.FlowerinformationMapper;
 import com.example.optimist.mapper.NewsflowerMapper;
 import com.example.optimist.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,12 @@ public class LoginController implements Serializable {
 
     @Autowired
     private NewsflowerMapper newsflowerMapper;
+
+    @Autowired
+    private FlowerinformationMapper flowerinformationMapper;
+
+    @Autowired
+    private FlowerMapper flower;
 
     @PostMapping("/login")
     @ResponseBody
@@ -100,6 +110,20 @@ public class LoginController implements Serializable {
     public String showNews() {
         List<Newsflower> newsflowers = newsflowerMapper.returnAll();
         return JSON.toJSONString(newsflowers);
+    }
+
+    @PostMapping("/showClassification")
+    @ResponseBody
+    public String showClassification() {
+        List<Flowerinformation> flowerinformations = flowerinformationMapper.returnAll();
+        return JSON.toJSONString(flowerinformations);
+    }
+
+    @PostMapping("/showFlower")
+    @ResponseBody
+    public String showFlower() {
+        List<Flower> flowers = flower.returnAll();
+        return JSON.toJSONString(flowers);
     }
 
 }

@@ -3,6 +3,8 @@ package com.example.optimist.mapper;
 import com.example.optimist.entity.Flower;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @author 65667
  */
@@ -15,6 +17,8 @@ public interface FlowerMapper {
     int insertSelective(Flower record);
 
     Flower selectByPrimaryKey(Integer fno);
+
+    List<Flower> returnAll();
 
     int updateByPrimaryKeySelective(Flower record);
 
